@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">packageApp</string>
+    <string name="title_receive" />
 </resources>
