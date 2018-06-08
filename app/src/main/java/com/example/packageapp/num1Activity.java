@@ -10,9 +10,19 @@ import android.widget.EditText;
 
 public class num1Activity extends AppCompatActivity {
 
+    /*页面登录注册按钮，用户名密码框，记住密码自动登录勾选框*/
     private Button btnLogin,btnRegist;
     private EditText userName,psd;
     private CheckBox rmpsd,autolgn;
+    private int RequestCode=1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        userName.setText(data.getStringExtra("name"));
+        psd.setText(data.getStringExtra("psd"));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +37,15 @@ public class num1Activity extends AppCompatActivity {
         btnRegist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
-                startActivityForResult(intent,1);
+                Intent intent=new Intent(num1Activity.this,num1eActivity.class);
+                startActivityForResult(intent,RequestCode);
+            }
+        });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(num1Activity.this,num3Activity.class);
+                startActivity(intent);
             }
         });
     }
