@@ -15,7 +15,11 @@
         <activity android:name=".num1eActivity"/>
         <activity android:name=".num2Activity" />
         <activity android:name=".num3Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".num4Activity"/>
         <activity android:name=".num5Activity" />
@@ -25,11 +29,7 @@
         <activity android:name=".num9Activity" />
         <activity android:name=".num10Activity" />
         <activity android:name=".num11Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -28,7 +28,7 @@ public class OrderDBHelper extends SQLiteOpenHelper {
                 "receive_phone text," +
                 "start_place text," +
                 "end_place text ," +
-                " payment integer," +
+                "payment integer," +
                 "type integer," +
                 "state integer," +
                 "info text)";

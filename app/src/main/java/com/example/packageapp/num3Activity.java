@@ -26,13 +26,25 @@ public class num3Activity extends AppCompatActivity {
         receiveBtn = findViewById(R.id.receiveButton);
         orderBtn = findViewById(R.id.orderButton);
 
-        //下单事件 点击转发到 num9Activity 填写下单信息
+        //下单事件 点击转发到 num11Activity 填写下单信息
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(num3Activity.this,num11Activity.class);
-                //todo 这里id(用户id )假设为3
-                int id = 3;
+                //todo 这里id(用户id )假设为1
+                int id = 1;
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
+
+        //接单事件 转发到num4Activity 获取所有订单列表
+        receiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(num3Activity.this,num4Activity.class);
+                //todo 这里id（用户id）假设为1
+                int id = 1;
                 intent.putExtra("id",id);
                 startActivity(intent);
             }

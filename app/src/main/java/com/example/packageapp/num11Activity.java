@@ -102,6 +102,7 @@ public class num11Activity extends AppCompatActivity {
                 String sql = "insert into order1(_id,order_id,order_name,order_phone,receive_id,receive_name,receive_phone,start_place,end_place,payment,type,state,info)" +
                         "values ( null, ? , ? ,?,null,null,null,?,?,?,?,0,?)";
                 sqLiteDatabase.execSQL(sql,new Object[]{id,package_receive,package_phone,package_startPlace,package_endPlace,package_payment,package_type,package_info});
+
             }
         });
     }
