@@ -18,13 +18,12 @@ public class num1Activity extends AppCompatActivity {
     private Button btnLogin,btnRegist;
     private EditText userName,psd;
     private CheckBox rmpsd,autolgn;
-    private int RequestCode=1;
     private SQLiteDatabase sqLiteDatabase;
+    private int RequestCode=1;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         userName.setText(data.getStringExtra("name"));
         psd.setText(data.getStringExtra("psd"));
 
@@ -48,8 +47,6 @@ public class num1Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(num1Activity.this,num1eActivity.class);
                 startActivityForResult(intent,RequestCode);
-
-
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {

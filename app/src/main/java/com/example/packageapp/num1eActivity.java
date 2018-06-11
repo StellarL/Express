@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 public class num1eActivity extends AppCompatActivity {
 
+    private String name,pwd;
+    private int RequestCode=2;
     //注册按钮
     private Button btnregist;
     //手机号，密码，确认密码
@@ -18,7 +20,6 @@ public class num1eActivity extends AppCompatActivity {
     //数据库
 //    private SQLiteDatabase sqLiteDatabase;
 
-    private int ResultCode=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +35,8 @@ public class num1eActivity extends AppCompatActivity {
         btnregist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name=phoneNum.getText().toString();
-                String pwd=psd.getText().toString();
+                name=phoneNum.getText().toString();
+                pwd=psd.getText().toString();
                 String conpwd=conPsd.getText().toString();
                 if(pwd.equals(conpwd)) {
                     //存入数据库
@@ -43,11 +44,13 @@ public class num1eActivity extends AppCompatActivity {
 //                    Intent intent = getIntent();
 //                    intent.putExtra("name", name);
 //                    intent.putExtra("psd", pwd);
-//                    setResult(ResultCode, intent);
-                    Intent intent = new Intent(num1eActivity.this,num2Activity.class);
-                    intent.putExtra("name",name);
-                    intent.putExtra("psd",pwd);
-                    startActivity(intent);
+//
+                    Intent intent1=getIntent();
+                    Intent intent=new Intent(num1eActivity.this,num2Activity.class);
+                    intent1.putExtra("name",name);
+                    intent1.putExtra("psd",pwd);
+                    startActivityForResult(intent,1);
+                    setResult(0,intent1);
                     finish();
                 } else {
                     /*密码与确认密码不一致*/
@@ -56,4 +59,5 @@ public class num1eActivity extends AppCompatActivity {
             }
         });
     }
+
 }

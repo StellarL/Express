@@ -30,7 +30,8 @@ public class num2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=getIntent();
-                startActivity(intent);
+                setResult(0,intent);
+                finish();
             }
         });
 
