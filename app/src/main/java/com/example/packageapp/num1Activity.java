@@ -1,4 +1,4 @@
-﻿package com.example.packageapp;
+package com.example.packageapp;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,11 +19,7 @@ public class num1Activity extends AppCompatActivity {
     private EditText userName,psd;
     private CheckBox rmpsd,autolgn;
     private int RequestCode=1;
-// <<<<<<< test
-//     //private SQLiteDatabase sqLiteDatabase;
-// =======
-
-// >>>>>>> master
+     private SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
