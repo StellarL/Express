@@ -1,6 +1,7 @@
 package com.example.packageapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,7 @@ public class AllOrdersAdapter extends BaseAdapter {
 //        String endPlace = map.get("endPlace").toString();
 //        String payment = map.get("payment").toString();
 //        String type = map.get("type").toString();
-        Order order = (Order)getItem(position);
+        final Order order = (Order)getItem(position);
         String startPlace = order.getStartPlace();
         String endPlace = order.getStartPlace();
         int payment = order.getPayment();
@@ -90,7 +91,8 @@ public class AllOrdersAdapter extends BaseAdapter {
         myHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo
+                //订单id
+               int id=order.get_id();
             }
         });
         return view;
@@ -99,5 +101,19 @@ public class AllOrdersAdapter extends BaseAdapter {
     class MyHolder{
         TextView startPlace,endPlace,type,payment;
         Button button;
+    }
+
+    /**
+     * 用于回调的抽象类
+     */
+    public static abstract class MyClickListener implements View.OnClickListener {
+        /**
+         * 基类的onClick方法
+         */
+        @Override
+        public void onClick(View v) {
+            myOnClick((Integer) v.getTag(), v);
+        }
+        public abstract void myOnClick(int position, View v);
     }
 }

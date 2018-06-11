@@ -19,7 +19,7 @@ public class num1Activity extends AppCompatActivity {
     private EditText userName,psd;
     private CheckBox rmpsd,autolgn;
     private int RequestCode=1;
-     private SQLiteDatabase sqLiteDatabase;
+    private SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
