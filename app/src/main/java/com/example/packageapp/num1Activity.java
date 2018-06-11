@@ -1,4 +1,4 @@
-package com.example.packageapp;
+﻿package com.example.packageapp;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +15,7 @@ public class num1Activity extends AppCompatActivity {
     private EditText userName,psd;
     private CheckBox rmpsd,autolgn;
     private int RequestCode=1;
+int a = 0;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
