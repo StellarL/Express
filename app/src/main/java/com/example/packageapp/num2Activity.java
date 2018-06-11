@@ -1,7 +1,9 @@
 package com.example.packageapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,7 +26,13 @@ public class num2Activity extends AppCompatActivity {
         cardUp=findViewById(R.id.imageView);
         cardBack=findViewById(R.id.imageView2);
 
-
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=getIntent();
+                startActivity(intent);
+            }
+        });
 
     }
 }
