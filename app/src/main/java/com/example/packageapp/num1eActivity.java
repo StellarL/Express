@@ -20,7 +20,6 @@ public class num1eActivity extends AppCompatActivity {
     private EditText phoneNum,psd,conPsd;
     //数据库
     private SQLiteDatabase sqLiteDatabase;
-    private UserDBHelper userDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +39,13 @@ public class num1eActivity extends AppCompatActivity {
                 String conpwd=conPsd.getText().toString();
                 if(pwd.equals(conpwd)) {
 //                    存入数据库
-                    userDBHelper = new UserDBHelper(num1eActivity.this,"express.db",null,1);
-                    sqLiteDatabase = userDBHelper.getReadableDatabase();
-                    userDBHelper.insertUser(name,pwd,sqLiteDatabase);
-                    Log.e("insertUser", "insertUser success" );
+                    sqLiteDatabase = openOrCreateDatabase("expressUserUp.db",MODE_PRIVATE,null);
+                    String insertSql = "insert into user(_id,username,password,relname,id_card,id_img) values (null,?,?,null,null,null)";
+                    sqLiteDatabase.execSQL(insertSql,new Object[]{name,pwd});
+                    Log.e("insert", "onClick: insert success");
                     Intent intent1=getIntent();
                     Intent intent=new Intent(num1eActivity.this,num2Activity.class);
+                    intent.putExtra("name",name);
                     intent1.putExtra("name",name);
                     intent1.putExtra("psd",pwd);
                     startActivityForResult(intent,1);
@@ -57,7 +57,6 @@ public class num1eActivity extends AppCompatActivity {
                 }
             }
         });
-        userDBHelper = new UserDBHelper(num1eActivity.this,"express.db",null,1);
     }
 
 }

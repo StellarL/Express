@@ -1,7 +1,10 @@
 package com.example.packageapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,11 +65,6 @@ public class AllOrdersAdapter extends BaseAdapter {
             myHolder = (MyHolder) view.getTag();
         }
 
-//        HashMap map = (HashMap) getItem(position);
-//        String startPlace = map.get("startPlace").toString();
-//        String endPlace = map.get("endPlace").toString();
-//        String payment = map.get("payment").toString();
-//        String type = map.get("type").toString();
         final Order order = (Order)getItem(position);
         String startPlace = order.getStartPlace();
         String endPlace = order.getStartPlace();
@@ -91,8 +89,25 @@ public class AllOrdersAdapter extends BaseAdapter {
         myHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //订单id
-               int id=order.get_id();
+                Log.e("setOnClickListener", "onClick:  myHolder.button.setOnClickListener" );
+//                AlertDialog.Builder builder=new AlertDialog.Builder(context);
+//                builder.setIcon(android.R.drawable.sym_def_app_icon).setTitle("确认信息").setMessage(
+//                        "您确定接下此订单吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Intent intent=new Intent(context,num6Activity.class);
+//                        intent.putExtra("id",order.get_id());
+//                        context.startActivity(intent);
+//                    }
+//                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                    }
+//                });
+                Intent intent = new Intent(context,num6Activity.class);
+                intent.putExtra("id",order.get_id());
+                context.startActivity(intent);
             }
         });
         return view;
@@ -101,19 +116,5 @@ public class AllOrdersAdapter extends BaseAdapter {
     class MyHolder{
         TextView startPlace,endPlace,type,payment;
         Button button;
-    }
-
-    /**
-     * 用于回调的抽象类
-     */
-    public static abstract class MyClickListener implements View.OnClickListener {
-        /**
-         * 基类的onClick方法
-         */
-        @Override
-        public void onClick(View v) {
-            myOnClick((Integer) v.getTag(), v);
-        }
-        public abstract void myOnClick(int position, View v);
     }
 }
