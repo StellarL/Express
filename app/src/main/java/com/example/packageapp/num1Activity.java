@@ -1,8 +1,10 @@
 package com.example.packageapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.prefs.PreferenceChangeEvent;
+
 public class num1Activity extends AppCompatActivity {
 
     /*页面登录注册按钮，用户名密码框，记住密码自动登录勾选框*/
@@ -20,6 +24,9 @@ public class num1Activity extends AppCompatActivity {
     private CheckBox rmpsd,autolgn;
     private SQLiteDatabase sqLiteDatabase;
     private int RequestCode=1;
+    //存储密码
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -38,6 +45,7 @@ public class num1Activity extends AppCompatActivity {
         btnRegist=findViewById(R.id.regist);
         userName=findViewById(R.id.userName);
         psd=findViewById(R.id.password);
+        rmpsd=findViewById(R.id.checkBox);
 
         sqLiteDatabase = this.openOrCreateDatabase("express.db",MODE_PRIVATE,null);
         Log.e("tag", "onCreate: " + "openDatabase" );
@@ -49,6 +57,19 @@ public class num1Activity extends AppCompatActivity {
                 startActivityForResult(intent,RequestCode);
             }
         });
+
+        //记住密码
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isRemember = pref.getBoolean("remember_password",false);
+        if (isRemember){
+            //将账号密码设置到文本框中
+            String name=pref.getString("name","");
+            String psdstr=pref.getString("psd","");
+            userName.setText(name);
+            psd.setText(psdstr);
+            rmpsd.setChecked(true);
+        }
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,10 +90,24 @@ public class num1Activity extends AppCompatActivity {
                 if(pass_true.length() == 0 || pass_true.equals("") || !pass_input.equals(pass_true))
                     Toast.makeText(num1Activity.this,"用户名或密码不正确",Toast.LENGTH_SHORT);
 
+                //检查复选框是否选中
+                editor = pref.edit();
+                if (rmpsd.isChecked()){
+                    editor.putBoolean("remember_password",true);
+                    editor.putString("name",name_input);
+                    editor.putString("password",pass_input);
+                }else {
+                    editor.clear();
+                }
+                editor.apply();
+
                 //如果密码正确，跳转到num3Activity
                 Intent intent = new Intent(num1Activity.this, num3Activity.class);
                 startActivity(intent);
+
             }
         });
+
+
     }
 }
