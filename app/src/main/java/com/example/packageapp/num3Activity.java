@@ -14,11 +14,14 @@ public class num3Activity extends AppCompatActivity {
     private BottomNavigationBar bottomNavigationBar;
     private Button receiveBtn;
     private Button orderBtn;
+    private String username;//用户名 即 登录手机号
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_num3);
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
         bottomNavigationBar = findViewById(R.id.navigation);
         bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.ic_launcher,"首页"))
                 .addItem(new BottomNavigationItem(R.mipmap.ic_launcher,"订单"))
@@ -31,9 +34,7 @@ public class num3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(num3Activity.this,num11Activity.class);
-                //todo 这里id(用户id )假设为1
-                int id = 1;
-                intent.putExtra("id",id);
+                intent.putExtra("username",username);
                 startActivity(intent);
             }
         });
@@ -43,9 +44,7 @@ public class num3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(num3Activity.this,num4Activity.class);
-                //todo 这里id（用户id）假设为1
-                int id = 1;
-                intent.putExtra("id",id);
+                intent.putExtra("username",username);
                 startActivity(intent);
             }
         });

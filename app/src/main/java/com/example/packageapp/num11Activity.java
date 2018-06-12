@@ -21,8 +21,8 @@ public class num11Activity extends AppCompatActivity {
     private Button btnCancel,btnSubmit;
     private OrderDBHelper orderDBHelper;
     private SQLiteDatabase sqLiteDatabase;
-    //用户id
-    private int id;
+    //用户名
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +30,8 @@ public class num11Activity extends AppCompatActivity {
         setContentView(R.layout.activity_num11);
 
         Intent intent = getIntent();
-        //获取用户id
-        id = intent.getIntExtra("id",1);
+        //获取用户名
+        username = intent.getStringExtra("username");
 
         name=findViewById(R.id.name);
         payment=findViewById(R.id.editText2);
@@ -66,11 +66,12 @@ public class num11Activity extends AppCompatActivity {
         sqLiteDatabase = orderDBHelper.getReadableDatabase();
 
         Log.e("beforeClick", "onCreate: beforeClick" );
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //下单人id 从登陆传进来
+                //下单人username 从登陆传进来
 
                 //下单人即收件人姓名
                 String package_receive = name.getText().toString();
@@ -101,8 +102,9 @@ public class num11Activity extends AppCompatActivity {
                 //存入数据库
                 String sql = "insert into order1(_id,order_id,order_name,order_phone,receive_id,receive_name,receive_phone,start_place,end_place,payment,type,state,info)" +
                         "values ( null, ? , ? ,?,null,null,null,?,?,?,?,0,?)";
-                sqLiteDatabase.execSQL(sql,new Object[]{id,package_receive,package_phone,package_startPlace,package_endPlace,package_payment,package_type,package_info});
-
+                sqLiteDatabase.execSQL(sql,new Object[]{username,package_receive,package_phone,package_startPlace,package_endPlace,package_payment,package_type,package_info});
+                Intent intent1 = new Intent(num11Activity.this,num3Activity.class);
+                startActivity(intent1);
             }
         });
     }

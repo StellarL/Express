@@ -23,7 +23,6 @@ public class num1Activity extends AppCompatActivity {
     private EditText userName,psd;
     private CheckBox rmpsd,autolgn;
     private SQLiteDatabase sqLiteDatabase;
-//    private UserDBHelper userDBHelper;
     private int RequestCode=1;
     //存储密码
     private SharedPreferences pref;
@@ -48,16 +47,7 @@ public class num1Activity extends AppCompatActivity {
         psd=findViewById(R.id.password);
         rmpsd=findViewById(R.id.checkBox);
 
-//        userDBHelper = new UserDBHelper(num1Activity.this,"express.db",null,1);
-//        sqLiteDatabase = userDBHelper.getReadableDatabase();
 
-        btnRegist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(num1Activity.this,num1eActivity.class);
-                startActivityForResult(intent,RequestCode);
-            }
-        });
 
         //记住密码
         pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -71,6 +61,14 @@ public class num1Activity extends AppCompatActivity {
             rmpsd.setChecked(true);
         }
 
+        btnRegist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(num1Activity.this,num1eActivity.class);
+                startActivityForResult(intent,RequestCode);
+            }
+        });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,12 +79,14 @@ public class num1Activity extends AppCompatActivity {
                     Toast.makeText(num1Activity.this,"请输入用户名",Toast.LENGTH_SHORT);
 
                 //检查 密码
+                sqLiteDatabase = openOrCreateDatabase("expressUserUp.db",MODE_PRIVATE,null);
                 String pwdSql = "select password from user where username = ?";
                 Cursor c = sqLiteDatabase.rawQuery(pwdSql,new String[]{name_input});
                 String pass_true = "";
                 while (c.moveToNext()){
                     pass_true = c.getString(c.getColumnIndex("password"));
                 }
+
                 //查询到的密码为空或不对应，用户名或用户名错误
                 if(pass_true.length() == 0 || pass_true.equals("") || !pass_input.equals(pass_true))
                     Toast.makeText(num1Activity.this,"用户名或密码不正确",Toast.LENGTH_SHORT);
@@ -104,6 +104,7 @@ public class num1Activity extends AppCompatActivity {
 
                 //如果密码正确，跳转到num3Activity
                 Intent intent = new Intent(num1Activity.this, num3Activity.class);
+                intent.putExtra("username",name_input);
                 startActivity(intent);
 
             }

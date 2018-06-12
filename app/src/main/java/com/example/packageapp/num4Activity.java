@@ -17,7 +17,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class num4Activity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class num4Activity extends AppCompatActivity  {
 
     private ListView listView;
     private AllOrdersAdapter allOrdersAdapter;
@@ -25,10 +25,9 @@ public class num4Activity extends AppCompatActivity implements AdapterView.OnIte
     private SQLiteDatabase sqLiteDatabase;
     private  Order order;
 
-    //当前用户id
-    private int id;
+    //当前用户用户名
+    private String username;
 
-    private AllOrdersAdapter.MyClickListener myListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,45 +36,24 @@ public class num4Activity extends AppCompatActivity implements AdapterView.OnIte
         listView = findViewById(R.id.allOrders);
 
         Intent intent = getIntent();
-        //获取用户id
-        id = intent.getIntExtra("id",1);
+        //获取用户名
+        username = intent.getStringExtra("username");
 
         //初始化arrayList
         initData();
         allOrdersAdapter = new AllOrdersAdapter(num4Activity.this,arrayList);
         listView.setAdapter(allOrdersAdapter);
 
-        myListener=new AllOrdersAdapter.MyClickListener() {
+        /*myListener=new AllOrdersAdapter.MyClickListener() {
             @Override
             public void myOnClick(int position, View v) {
                 order=arrayList.get(position);
+                Log.e("ItemClick", "myOnClick: "+position );
             }
-        };
+        };*/
     }
 
-    /*
-    初始化ArrayList<Order> 获取数据库Order1表中 state=0的数据
-     */
-    private void initData() {
-        Log.e("initDate", "initData: " );
-        sqLiteDatabase = this.openOrCreateDatabase("express.db",MODE_PRIVATE,null);
-        String strSelect = "select * from order1 where state = 0";
-        Cursor c = sqLiteDatabase.rawQuery(strSelect,null);
-        arrayList = new ArrayList<Order>();
-        while (c.moveToNext()) {
-            int _id = c.getInt(c.getColumnIndex("_id"));
-//            int orderId = c.getInt(c.getColumnIndex("order_id"));
-            String startPlace = c.getString(c.getColumnIndex("start_place"));
-            String endPlace = c.getString(c.getColumnIndex("end_place"));
-            int payment = c.getInt(c.getColumnIndex("payment"));
-            int type = c.getInt(c.getColumnIndex("type"));
-            Order order = new Order(_id, startPlace, endPlace, payment, type);
-            Log.e("order", "initData: " + order.toString());
-            arrayList.add(order);
-        }
-    }
-
-    @Override
+    /*@Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setIcon(android.R.drawable.sym_def_app_icon).setTitle("确认信息").setMessage(
@@ -93,5 +71,30 @@ public class num4Activity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
+    }*/
+    /*
+    初始化ArrayList<Order> 获取数据库Order1表中 state=0的数据
+     */
+    private void initData() {
+        Log.e("initDate", "initData: " );
+        sqLiteDatabase = this.openOrCreateDatabase("express.db",MODE_PRIVATE,null);
+        String strSelect = "select * from order1 where state = 0";
+        Cursor c = sqLiteDatabase.rawQuery(strSelect,null);
+        arrayList = new ArrayList<Order>();
+        while (c.moveToNext()) {
+            //订单id
+            int _id = c.getInt(c.getColumnIndex("_id"));
+            //下单人id 即用户名 即电话号码
+//            int orderId = c.getInt(c.getColumnIndex("order_id"));
+            String startPlace = c.getString(c.getColumnIndex("start_place"));
+            String endPlace = c.getString(c.getColumnIndex("end_place"));
+            int payment = c.getInt(c.getColumnIndex("payment"));
+            int type = c.getInt(c.getColumnIndex("type"));
+            Order order = new Order(_id, startPlace, endPlace, payment, type);
+            Log.e("order", "initData: " + order.toString());
+            arrayList.add(order);
+        }
     }
+
+
 }
