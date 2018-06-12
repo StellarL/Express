@@ -23,6 +23,7 @@ public class num1Activity extends AppCompatActivity {
     private EditText userName,psd;
     private CheckBox rmpsd,autolgn;
     private SQLiteDatabase sqLiteDatabase;
+//    private UserDBHelper userDBHelper;
     private int RequestCode=1;
     //存储密码
     private SharedPreferences pref;
@@ -47,8 +48,8 @@ public class num1Activity extends AppCompatActivity {
         psd=findViewById(R.id.password);
         rmpsd=findViewById(R.id.checkBox);
 
-        sqLiteDatabase = this.openOrCreateDatabase("express.db",MODE_PRIVATE,null);
-        Log.e("tag", "onCreate: " + "openDatabase" );
+//        userDBHelper = new UserDBHelper(num1Activity.this,"express.db",null,1);
+//        sqLiteDatabase = userDBHelper.getReadableDatabase();
 
         btnRegist.setOnClickListener(new View.OnClickListener() {
             @Override
