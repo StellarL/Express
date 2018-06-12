@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,8 @@ public class num1eActivity extends AppCompatActivity {
     //手机号，密码，确认密码
     private EditText phoneNum,psd,conPsd;
     //数据库
-//    private SQLiteDatabase sqLiteDatabase;
+    private SQLiteDatabase sqLiteDatabase;
+    private UserDBHelper userDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,6 @@ public class num1eActivity extends AppCompatActivity {
         conPsd=findViewById(R.id.conpsd);
         btnregist=findViewById(R.id.regist);
 
-//        sqLiteDatabase = openOrCreateDatabase("express.db",MODE_PRIVATE,null);
-
         btnregist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,12 +39,11 @@ public class num1eActivity extends AppCompatActivity {
                 pwd=psd.getText().toString();
                 String conpwd=conPsd.getText().toString();
                 if(pwd.equals(conpwd)) {
-                    //存入数据库
-//                    String insSq;
-//                    Intent intent = getIntent();
-//                    intent.putExtra("name", name);
-//                    intent.putExtra("psd", pwd);
-//
+//                    存入数据库
+                    userDBHelper = new UserDBHelper(num1eActivity.this,"express.db",null,1);
+                    sqLiteDatabase = userDBHelper.getReadableDatabase();
+                    userDBHelper.insertUser(name,pwd,sqLiteDatabase);
+                    Log.e("insertUser", "insertUser success" );
                     Intent intent1=getIntent();
                     Intent intent=new Intent(num1eActivity.this,num2Activity.class);
                     intent1.putExtra("name",name);
@@ -58,6 +57,7 @@ public class num1eActivity extends AppCompatActivity {
                 }
             }
         });
+        userDBHelper = new UserDBHelper(num1eActivity.this,"express.db",null,1);
     }
 
 }

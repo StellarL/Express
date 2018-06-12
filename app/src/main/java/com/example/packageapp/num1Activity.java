@@ -19,6 +19,7 @@ public class num1Activity extends AppCompatActivity {
     private EditText userName,psd;
     private CheckBox rmpsd,autolgn;
     private SQLiteDatabase sqLiteDatabase;
+//    private UserDBHelper userDBHelper;
     private int RequestCode=1;
 
     @Override
@@ -39,8 +40,8 @@ public class num1Activity extends AppCompatActivity {
         userName=findViewById(R.id.userName);
         psd=findViewById(R.id.password);
 
-        sqLiteDatabase = this.openOrCreateDatabase("express.db",MODE_PRIVATE,null);
-        Log.e("tag", "onCreate: " + "openDatabase" );
+//        userDBHelper = new UserDBHelper(num1Activity.this,"express.db",null,1);
+//        sqLiteDatabase = userDBHelper.getReadableDatabase();
 
         btnRegist.setOnClickListener(new View.OnClickListener() {
             @Override
