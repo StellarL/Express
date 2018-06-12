@@ -4,8 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/orderList"
+    <TextView
+        android:id="@+id/textView39"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:text="我的订单"
+        android:gravity="center"/>
 </LinearLayout>

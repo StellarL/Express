@@ -16,21 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".num1eActivity"/>
+        <activity android:name=".num1eActivity" />
         <activity android:name=".num2Activity" />
-        <activity android:name=".num3Activity">
-
-        </activity>
-        <activity android:name=".num4Activity"/>
+        <activity android:name=".num3Activity" />
+        <activity android:name=".num4Activity" />
         <activity android:name=".num5Activity" />
         <activity android:name=".num6Activity" />
         <activity android:name=".num7Activity" />
         <activity android:name=".num8Activity" />
         <activity android:name=".num9Activity" />
         <activity android:name=".num10Activity" />
-        <activity android:name=".num11Activity">
-
-        </activity>
+        <activity android:name=".num11Activity" />
+        <activity android:name=".receiveActivity" />
+        <activity android:name=".orderActivity"></activity>
     </application>
 
 </manifest>

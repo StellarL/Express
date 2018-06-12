@@ -105,7 +105,7 @@ public class num1Activity extends AppCompatActivity {
                 //如果密码正确，跳转到num3Activity
                 Intent intent = new Intent(num1Activity.this, num3Activity.class);
                 startActivity(intent);
-
+                finish();
             }
         });
 

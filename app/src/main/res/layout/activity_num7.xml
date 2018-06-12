@@ -19,10 +19,12 @@
         tools:text="货已收到\n非常感谢" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+
 </android.support.constraint.ConstraintLayout>
