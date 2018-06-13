@@ -26,8 +26,7 @@ public class num4Activity extends AppCompatActivity  {
     private ListView listView;
     private AllOrdersAdapter allOrdersAdapter;
     private ArrayList<Order> arrayList;
-    private SQLiteDatabase sqLiteDatabase;
-    private  Order order;
+    private DBUtil dbUtil;
 
     //当前用户用户名
     private String username;
@@ -56,23 +55,8 @@ public class num4Activity extends AppCompatActivity  {
      */
     private void initData() {
         Log.e("initDate", "initData: " );
-        sqLiteDatabase = this.openOrCreateDatabase("express.db",MODE_PRIVATE,null);
-        String strSelect = "select * from order1 where state = 0";
-        Cursor c = sqLiteDatabase.rawQuery(strSelect,null);
-        arrayList = new ArrayList<Order>();
-        while (c.moveToNext()) {
-            //订单id
-            int _id = c.getInt(c.getColumnIndex("_id"));
-            //下单人id 即用户名 即电话号码
-//            int orderId = c.getInt(c.getColumnIndex("order_id"));
-            String startPlace = c.getString(c.getColumnIndex("start_place"));
-            String endPlace = c.getString(c.getColumnIndex("end_place"));
-            int payment = c.getInt(c.getColumnIndex("payment"));
-            int type = c.getInt(c.getColumnIndex("type"));
-            Order order1 = new Order(_id, startPlace, endPlace, payment, type);
-//            Log.e("order", "initData: " + order.toString());
-            arrayList.add(order1);
-        }
+        dbUtil = new DBUtil(num4Activity.this,"order1");
+        arrayList = dbUtil.queryAllState0();
     }
 
 
