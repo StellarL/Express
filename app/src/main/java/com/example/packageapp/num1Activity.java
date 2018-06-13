@@ -87,6 +87,8 @@ public class num1Activity extends AppCompatActivity {
                     pass_true = c.getString(c.getColumnIndex("password"));
                 }
 
+                Log.e("pass_true", "onClick: "+pass_true );
+
                 //查询到的密码为空或不对应，用户名或用户名错误
                 if(pass_true.length() == 0 || pass_true.equals("") || !pass_input.equals(pass_true))
                     Toast.makeText(num1Activity.this,"用户名或密码不正确",Toast.LENGTH_SHORT);

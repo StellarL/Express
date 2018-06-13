@@ -32,12 +32,31 @@ public class Order {
     //提货信息
     private String info;
 
+    public Order() {
+    }
+
     public Order(int _id, String startPlace, String endPlace, int payment, int type) {
         this._id = _id;
         this.startPlace = startPlace;
         this.endPlace = endPlace;
         this.payment = payment;
         this.type = type;
+    }
+
+    public Order(int _id, int orderId, String orderName, String orderPhone, int receiveId, String receiveName, String receivePhone, String startPlace, String endPlace, int payment, int type, int state, String info) {
+        this._id = _id;
+        this.orderId = orderId;
+        this.orderName = orderName;
+        this.orderPhone = orderPhone;
+        this.receiveId = receiveId;
+        this.receiveName = receiveName;
+        this.receivePhone = receivePhone;
+        this.startPlace = startPlace;
+        this.endPlace = endPlace;
+        this.payment = payment;
+        this.type = type;
+        this.state = state;
+        this.info = info;
     }
 
     public int get_id() {
