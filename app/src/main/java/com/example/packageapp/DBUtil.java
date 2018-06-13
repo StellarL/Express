@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by 李馨 on 2018/6/13.
  */
@@ -15,6 +17,28 @@ public class DBUtil {
 
     public DBUtil(Context context,String dbname){
         sqLiteDatabase = context.openOrCreateDatabase(dbname,Context.MODE_PRIVATE,null);
+    }
+
+    //查询未接单的所有订单
+    public ArrayList<Order> queryAllState0(){
+        ArrayList<Order> arrayList ;
+        String strSelect = "select * from order1 where state = 0";
+        Cursor c = sqLiteDatabase.rawQuery(strSelect,null);
+        arrayList = new ArrayList<Order>();
+        while (c.moveToNext()) {
+            //订单id
+            int _id = c.getInt(c.getColumnIndex("_id"));
+            //下单人id 即用户名 即电话号码
+//            int orderId = c.getInt(c.getColumnIndex("order_id"));
+            String startPlace = c.getString(c.getColumnIndex("start_place"));
+            String endPlace = c.getString(c.getColumnIndex("end_place"));
+            int payment = c.getInt(c.getColumnIndex("payment"));
+            int type = c.getInt(c.getColumnIndex("type"));
+            Order order1 = new Order(_id, startPlace, endPlace, payment, type);
+//            Log.e("order", "initData: " + order.toString());
+            arrayList.add(order1);
+        }
+        return arrayList;
     }
 
     //根据订单id 查询 Order
