@@ -21,6 +21,7 @@ public class num8Activity extends AppCompatActivity {
 
         //接单下单选项卡
         tabHost=findViewById(R.id.tabhost);
+        tabWidget=findViewById(android.R.id.tabs);
         tabWidget.setDividerDrawable(null);//设置无竖线
         String[] titles={"我的下单","我的接单"};
         String[] tags={"tag1","tag2"};

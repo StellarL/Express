@@ -56,6 +56,7 @@ public class num3Activity extends AppCompatActivity {
 
         //选项卡
         tabHost=findViewById(R.id.tabhost);
+        tabWidget=findViewById(android.R.id.tabs);
         tabWidget.setDividerDrawable(null);//设置无竖线
         String[] titles={"首页","订单","我的"};
         String[] tags={"tag1","tag2","tag3"};
