@@ -6,25 +6,53 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 public class num6Activity extends AppCompatActivity {
 
     private DBUtil dbUtil;
+    private TextView start_place,end_place,payment,type,order_name,order_phone,info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_num6);
 
+        start_place = findViewById(R.id.textView16);
+        end_place = findViewById(R.id.textView17);
+        payment = findViewById(R.id.textViewPayment);
+        type = findViewById(R.id.textView19);
+        order_name = findViewById(R.id.textView20);
+        order_phone = findViewById(R.id.textView21);
+        info = findViewById(R.id.textViewInfo);
+
         Intent intent = getIntent();
         //点单id
         int id = intent.getIntExtra("id",-1);
         String username  = intent.getStringExtra("username");
-        dbUtil = new DBUtil(num6Activity.this,"express.db");
+        dbUtil = new DBUtil(num6Activity.this,"express1.db");
         dbUtil.updateStete(id,username);
         Order order = dbUtil.queryById(id);
         Log.e("num6Activity", "onCreate: " + order.toString() );
-        //todo 将order中的内容写到界面
+        start_place.setText(order.getStartPlace());
+        end_place.setText(order.getEndPlace());
+        payment.setText(String.valueOf(order.getPayment()));
+        String type1 = "";
+        switch (order.getType()){
+            case 1:
+                type1 = "小";
+                break;
+            case 2:
+                type1 = "中";
+                break;
+            case 3:
+                type1 = "大";
+        }
+        type.setText(type1);
+        order_name.setText(order.getOrderName());
+        order_phone.setText(order.getOrderPhone());
+        info.setText(order.getInfo());
+
 
     }
 

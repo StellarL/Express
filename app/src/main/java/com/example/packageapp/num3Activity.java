@@ -1,5 +1,6 @@
 package com.example.packageapp;
 
+import android.app.ActivityGroup;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
-public class num3Activity extends AppCompatActivity {
+public class num3Activity extends ActivityGroup {
 
     //选项卡
     private TabHost tabHost;
@@ -54,9 +55,9 @@ public class num3Activity extends AppCompatActivity {
             }
         });
 
-        //选项卡
-        tabHost=findViewById(R.id.tabhost);
-        tabHost.setup();
+       //选项卡
+       /* tabHost=findViewById(R.id.tabhost);
+        tabHost.setup(this.getLocalActivityManager());
         tabWidget=findViewById(android.R.id.tabs);
         tabWidget.setDividerDrawable(null);//设置无竖线
         String[] titles={"首页","订单","我的"};
@@ -74,7 +75,7 @@ public class num3Activity extends AppCompatActivity {
             spec.setContent(intents[i]);
             //将选项卡添加至tabHost上
             tabHost.addTab(spec);
-        }
+        }*/
     }
 
 }

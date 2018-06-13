@@ -19,6 +19,14 @@ public class DBUtil {
         sqLiteDatabase = context.openOrCreateDatabase(dbname,Context.MODE_PRIVATE,null);
     }
 
+
+    //下单事件
+    public void insert(String username, String package_receive, String package_phone, String package_startPlace, String package_endPlace, int package_payment, int package_type, String package_info) {
+        String sql = "insert into order2(_id,order_id,order_name,order_phone,receive_id,receive_name,receive_phone,start_place,end_place,payment,type,state,info,finish)" +
+                "values ( null, ? , ? ,?,null,null,null,?,?,?,?,0,?,0)";
+        sqLiteDatabase.execSQL(sql,new Object[]{username,package_receive,package_phone,package_startPlace,package_endPlace,package_payment,package_type,package_info});
+    }
+
     //查询未接单的所有订单
     public ArrayList<Order> queryAllState0(){
         ArrayList<Order> arrayList ;
@@ -43,7 +51,7 @@ public class DBUtil {
 
     //根据订单id 查询 Order
     public Order queryById(int id) {
-        String sql = "select * from order1 where _id = ? ";
+        String sql = "select * from order2 where _id = ? ";
         Cursor c = sqLiteDatabase.rawQuery(sql, new String[]{String.valueOf(id)});
 
         Order order = new Order();
@@ -74,7 +82,9 @@ public class DBUtil {
             int state = c.getInt(c.getColumnIndex("state"));
             //取货信息
             String info = c.getString(c.getColumnIndex("info"));
-            order = new Order(_id,order_id,order_name,order_phone,receive_id,receive_name,receive_phone,start_place,end_place,payment,type,state,info);
+            //是否完成
+            String finish = c.getString(c.getColumnIndex("finish"));
+            order = new Order(_id,order_id,order_name,order_phone,receive_id,receive_name,receive_phone,start_place,end_place,payment,type,state,info,finish);
         }
         return order;
     }
@@ -83,8 +93,10 @@ public class DBUtil {
      * 用户点击接单 更新数据库 state = 1 receiveID receiveName receivePhone
      */
     public void updateStete(int id,String username) {
-        String sql = "update order1 set receive_id=?,state=1 where _id=?";
+        String sql = "update order2 set receive_id=?,state=1 where _id=?";
         sqLiteDatabase.execSQL(sql,new String[]{username,String.valueOf(id)});
         Log.e("updateStete", "updateStete: success" );
     }
+
+
 }

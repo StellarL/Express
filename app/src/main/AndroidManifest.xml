@@ -23,7 +23,9 @@
         <activity android:name=".num5Activity" />
         <activity android:name=".num6Activity" />
         <activity android:name=".num7Activity" />
-        <activity android:name=".num8Activity" />
+        <activity android:name=".num8Activity" >
+
+        </activity>
         <activity android:name=".num9Activity" />
         <activity android:name=".num10Activity" />
         <activity android:name=".num11Activity" />

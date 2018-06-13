@@ -41,7 +41,7 @@ public class num4Activity extends AppCompatActivity  {
         Intent intent = getIntent();
         //获取用户名
         username = intent.getStringExtra("username");
-
+        Log.e("num4Activity", "username : " + username );
         //初始化arrayList
         initData();
         allOrdersAdapter = new AllOrdersAdapter(num4Activity.this,arrayList,username);
@@ -55,7 +55,7 @@ public class num4Activity extends AppCompatActivity  {
      */
     private void initData() {
         Log.e("initDate", "initData: " );
-        dbUtil = new DBUtil(num4Activity.this,"order1");
+        dbUtil = new DBUtil(num4Activity.this,"express1.db");
         arrayList = dbUtil.queryAllState0();
     }
 

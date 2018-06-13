@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+/**
+ * 我的接单
+ */
 public class receiveActivity extends AppCompatActivity {
 
     private ListView listView;
