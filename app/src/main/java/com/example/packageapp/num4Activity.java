@@ -45,31 +45,8 @@ public class num4Activity extends AppCompatActivity  {
 
         //初始化arrayList
         initData();
-        allOrdersAdapter = new AllOrdersAdapter(num4Activity.this,arrayList);
+        allOrdersAdapter = new AllOrdersAdapter(num4Activity.this,arrayList,username);
         listView.setAdapter(allOrdersAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(num4Activity.this);
-                builder.setTitle("确认订单");
-                builder.setMessage("您确定要接下此订单吗？");
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(num4Activity.this,num6Activity.class));
-                    }
-                });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                builder.create().show();
-            }
-        });
-
 
     }
 
@@ -92,9 +69,9 @@ public class num4Activity extends AppCompatActivity  {
             String endPlace = c.getString(c.getColumnIndex("end_place"));
             int payment = c.getInt(c.getColumnIndex("payment"));
             int type = c.getInt(c.getColumnIndex("type"));
-            Order order = new Order(_id, startPlace, endPlace, payment, type);
+            Order order1 = new Order(_id, startPlace, endPlace, payment, type);
 //            Log.e("order", "initData: " + order.toString());
-            arrayList.add(order);
+            arrayList.add(order1);
         }
     }
 

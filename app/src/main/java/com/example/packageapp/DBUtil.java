@@ -54,4 +54,13 @@ public class DBUtil {
         }
         return order;
     }
+
+    /**
+     * 用户点击接单 更新数据库 state = 1 receiveID receiveName receivePhone
+     */
+    public void updateStete(int id,String username) {
+        String sql = "update order1 set receive_id=?,state=1 where _id=?";
+        sqLiteDatabase.execSQL(sql,new String[]{username,String.valueOf(id)});
+        Log.e("updateStete", "updateStete: success" );
+    }
 }
