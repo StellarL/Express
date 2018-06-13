@@ -31,6 +31,8 @@ public class Order {
     private int state;
     //提货信息
     private String info;
+    //是否完成
+    private String finish;
 
     public Order() {
     }
@@ -43,7 +45,7 @@ public class Order {
         this.type = type;
     }
 
-    public Order(int _id, int orderId, String orderName, String orderPhone, int receiveId, String receiveName, String receivePhone, String startPlace, String endPlace, int payment, int type, int state, String info) {
+    public Order(int _id, int orderId, String orderName, String orderPhone, int receiveId, String receiveName, String receivePhone, String startPlace, String endPlace, int payment, int type, int state, String info, String finish) {
         this._id = _id;
         this.orderId = orderId;
         this.orderName = orderName;
@@ -57,6 +59,7 @@ public class Order {
         this.type = type;
         this.state = state;
         this.info = info;
+        this.finish = finish;
     }
 
     public int get_id() {
@@ -163,6 +166,14 @@ public class Order {
         this.info = info;
     }
 
+    public String getFinish() {
+        return finish;
+    }
+
+    public void setFinish(String finish) {
+        this.finish = finish;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -179,6 +190,7 @@ public class Order {
                 ", type=" + type +
                 ", state=" + state +
                 ", info='" + info + '\'' +
+                ", finish='" + finish + '\'' +
                 '}';
     }
 }

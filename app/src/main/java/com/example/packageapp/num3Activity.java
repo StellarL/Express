@@ -1,6 +1,7 @@
 package com.example.packageapp;
 
 import android.app.FragmentManager;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+
 public class num3Activity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
 
     int lastSelectedPosition = 0;
@@ -20,6 +22,7 @@ public class num3Activity extends AppCompatActivity implements BottomNavigationB
     private MyFragment mMyFragment;
     private ScanFragment mScanFragment;
     private HomeFragment mHomeFragment;
+
 
 
     private BottomNavigationBar bottomNavigationBar;
@@ -58,6 +61,7 @@ public class num3Activity extends AppCompatActivity implements BottomNavigationB
                 startActivity(intent);
             }
         });
+
 
         /** 导航基础设置 包括按钮选中效果 导航栏背景色等 */
         bottomNavigationBar
@@ -134,6 +138,7 @@ public class num3Activity extends AppCompatActivity implements BottomNavigationB
         }
 
         transaction.commit();// 事务提交
+
 
     }
 

@@ -18,8 +18,8 @@ public class OrderDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("drop table if exists order1");
-        String create_sql = "create table order1(_id integer primary key autoincrement, " +
+        db.execSQL("drop table if exists order2");
+        String create_sql = "create table order2(_id integer primary key autoincrement, " +
                 "order_id integer," +
                 "order_name text," +
                 "order_phone text," +
@@ -31,7 +31,8 @@ public class OrderDBHelper extends SQLiteOpenHelper {
                 "payment integer," +
                 "type integer," +
                 "state integer," +
-                "info text)";
+                "info text," +
+                "finish text)";
         Log.e("DBHelper", "onCreate: " + create_sql);
         db.execSQL(create_sql);
     }

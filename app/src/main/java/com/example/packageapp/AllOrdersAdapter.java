@@ -70,7 +70,7 @@ public class AllOrdersAdapter extends BaseAdapter {
 
         final Order order = (Order)getItem(position);
         String startPlace = order.getStartPlace();
-        String endPlace = order.getStartPlace();
+        String endPlace = order.getEndPlace();
         int payment = order.getPayment();
         String type=  "";
         switch (order.getType()){
@@ -98,6 +98,7 @@ public class AllOrdersAdapter extends BaseAdapter {
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
                         context.startActivity(new Intent(context,num6Activity.class).putExtra("id",order.get_id()).putExtra("username",username));
 
                     }

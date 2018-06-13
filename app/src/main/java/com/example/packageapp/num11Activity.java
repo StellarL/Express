@@ -20,10 +20,11 @@ public class num11Activity extends AppCompatActivity {
     private Spinner spinner,startPlace,endPlace;
     private EditText name,payment,phoneNum,info;
     private Button btnCancel,btnSubmit;
-    private OrderDBHelper orderDBHelper;
-    private SQLiteDatabase sqLiteDatabase;
+//    private OrderDBHelper orderDBHelper;
+//    private SQLiteDatabase sqLiteDatabase;
     //用户名
     private String username;
+    private DBUtil dbUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +50,24 @@ public class num11Activity extends AppCompatActivity {
         };
         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(num11Activity.this,android.R.layout.simple_list_item_multiple_choice,arr);
         spinner.setAdapter(arrayAdapter);
+
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String num=arr[i];
                 adapterView.setVisibility(View.VISIBLE);
             }
 
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+
 
         /*此段为起点下拉框*/
         startPlace=findViewById(R.id.startPlace);
@@ -69,7 +76,9 @@ public class num11Activity extends AppCompatActivity {
         };
         ArrayAdapter<String> arrayAdapter2=new ArrayAdapter<String>(num11Activity.this,android.R.layout.simple_list_item_multiple_choice,arr2);
         startPlace.setAdapter(arrayAdapter2);
+
         startPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String num=arr[i];
@@ -81,11 +90,13 @@ public class num11Activity extends AppCompatActivity {
 
             }
         });
+
 
         /*此段为终点下拉框*/
         endPlace=findViewById(R.id.endPlace);
         endPlace.setAdapter(arrayAdapter2);
         endPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String num=arr[i];
@@ -98,9 +109,7 @@ public class num11Activity extends AppCompatActivity {
             }
         });
 
-        //开启数据库
-        orderDBHelper = new OrderDBHelper(num11Activity.this,"express.db",null,1);
-        sqLiteDatabase = orderDBHelper.getReadableDatabase();
+
 
         Log.e("beforeClick", "onCreate: beforeClick" );
 
@@ -137,9 +146,9 @@ public class num11Activity extends AppCompatActivity {
                 String package_info = info.getText().toString();
 
                 //存入数据库
-                String sql = "insert into order1(_id,order_id,order_name,order_phone,receive_id,receive_name,receive_phone,start_place,end_place,payment,type,state,info)" +
-                        "values ( null, ? , ? ,?,null,null,null,?,?,?,?,0,?)";
-                sqLiteDatabase.execSQL(sql,new Object[]{username,package_receive,package_phone,package_startPlace,package_endPlace,package_payment,package_type,package_info});
+                dbUtil = new DBUtil(num11Activity.this,"express1.db");
+                dbUtil.insert(username,package_receive,package_phone,package_startPlace,package_endPlace,package_payment,package_type,package_info);
+                Log.e("insert","onClick: insert success" );
                 Intent intent1 = new Intent(num11Activity.this,num3Activity.class);
                 startActivity(intent1);
             }
