@@ -44,34 +44,30 @@ public class num4Activity extends AppCompatActivity  {
         allOrdersAdapter = new AllOrdersAdapter(num4Activity.this,arrayList);
         listView.setAdapter(allOrdersAdapter);
 
-        /*myListener=new AllOrdersAdapter.MyClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void myOnClick(int position, View v) {
-                order=arrayList.get(position);
-                Log.e("ItemClick", "myOnClick: "+position );
-            }
-        };*/
-    }
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(num4Activity.this);
+                builder.setTitle("确认订单");
+                builder.setMessage("您确定要接下此订单吗？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(num4Activity.this,num6Activity.class));
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-    /*@Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
-        builder.setIcon(android.R.drawable.sym_def_app_icon).setTitle("确认信息").setMessage(
-                "您确定接下此订单吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent=new Intent(num4Activity.this,num6Activity.class);
-                intent.putExtra("id",order.get_id());
-                startActivity(intent);
-
-            }
-        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
+                    }
+                });
+                builder.create().show();
             }
         });
-    }*/
+    }
+
+
     /*
     初始化ArrayList<Order> 获取数据库Order1表中 state=0的数据
      */

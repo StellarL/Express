@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +34,7 @@ public class num11Activity extends AppCompatActivity {
         //获取用户名
         username = intent.getStringExtra("username");
 
-        name=findViewById(R.id.name);
+        name=findViewById(R.id.textpersonName);
         payment=findViewById(R.id.editText2);
         phoneNum=findViewById(R.id.editText3);
         btnCancel=findViewById(R.id.button3);
@@ -43,11 +44,18 @@ public class num11Activity extends AppCompatActivity {
 
         /*此段为类型下拉框*/
         spinner=findViewById(R.id.spinner);
-        String[] arr=new String[]{
+        final String[] arr=new String[]{
                 "大","中","小"
         };
         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(num11Activity.this,android.R.layout.simple_list_item_multiple_choice,arr);
         spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String num=arr[i];
+                adapterView.setVisibility(View.VISIBLE);
+            }
+        });
 
         /*此段为起点下拉框*/
         startPlace=findViewById(R.id.startPlace);
@@ -56,10 +64,24 @@ public class num11Activity extends AppCompatActivity {
         };
         ArrayAdapter<String> arrayAdapter2=new ArrayAdapter<String>(num11Activity.this,android.R.layout.simple_list_item_multiple_choice,arr2);
         startPlace.setAdapter(arrayAdapter2);
+        startPlace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String num=arr[i];
+                adapterView.setVisibility(View.VISIBLE);
+            }
+        });
 
         /*此段为终点下拉框*/
         endPlace=findViewById(R.id.endPlace);
         endPlace.setAdapter(arrayAdapter2);
+        endPlace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String num=arr[i];
+                adapterView.setVisibility(View.VISIBLE);
+            }
+        });
 
         //开启数据库
         orderDBHelper = new OrderDBHelper(num11Activity.this,"express.db",null,1);

@@ -26,7 +26,7 @@ public class num2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_num2);
 
         btnSubmit=findViewById(R.id.submit);
-        name=findViewById(R.id.name);
+        name=findViewById(R.id.textpersonName);
         userId=findViewById(R.id.Id);
         cardUp=findViewById(R.id.imageView);
         cardBack=findViewById(R.id.imageView2);
