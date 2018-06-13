@@ -91,7 +91,7 @@ public class num4Activity extends AppCompatActivity  {
             int payment = c.getInt(c.getColumnIndex("payment"));
             int type = c.getInt(c.getColumnIndex("type"));
             Order order = new Order(_id, startPlace, endPlace, payment, type);
-            Log.e("order", "initData: " + order.toString());
+//            Log.e("order", "initData: " + order.toString());
             arrayList.add(order);
         }
     }
