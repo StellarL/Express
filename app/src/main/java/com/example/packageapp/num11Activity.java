@@ -39,7 +39,7 @@ public class num11Activity extends AppCompatActivity {
         phoneNum=findViewById(R.id.editText3);
         btnCancel=findViewById(R.id.button3);
         btnSubmit=findViewById(R.id.button2);
-        info = findViewById(R.id.editText4);
+        info = findViewById(R.id.textPs);
 
 
         /*此段为类型下拉框*/

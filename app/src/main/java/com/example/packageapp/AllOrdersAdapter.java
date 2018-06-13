@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 /**
  * Created by 李馨 on 2018/6/9.
  */
@@ -25,10 +26,12 @@ public class AllOrdersAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<Order> arrayList;
+    private String username;
 
-    public AllOrdersAdapter(Context context, ArrayList<Order> arrayList) {
+    public AllOrdersAdapter(Context context, ArrayList<Order> arrayList,String username) {
         this.context = context;
         this.arrayList = arrayList;
+        this.username = username;
     }
 
     @Override
@@ -89,25 +92,23 @@ public class AllOrdersAdapter extends BaseAdapter {
         myHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("setOnClickListener", "onClick:  myHolder.button.setOnClickListener" );
-//                AlertDialog.Builder builder=new AlertDialog.Builder(context);
-//                builder.setIcon(android.R.drawable.sym_def_app_icon).setTitle("确认信息").setMessage(
-//                        "您确定接下此订单吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        Intent intent=new Intent(context,num6Activity.class);
-//                        intent.putExtra("id",order.get_id());
-//                        context.startActivity(intent);
-//                    }
-//                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                    }
-//                });
-                Intent intent = new Intent(context,num6Activity.class);
-                intent.putExtra("id",order.get_id());
-                context.startActivity(intent);
+                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("确认订单");
+                builder.setMessage("您确定要接下此订单吗？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        context.startActivity(new Intent(context,num6Activity.class).putExtra("id",order.get_id()).putExtra("username",username));
+
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.create().show();
             }
         });
         return view;

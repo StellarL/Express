@@ -17,10 +17,14 @@ public class num6Activity extends AppCompatActivity {
         setContentView(R.layout.activity_num6);
 
         Intent intent = getIntent();
+        //点单id
         int id = intent.getIntExtra("id",-1);
-
+        String username  = intent.getStringExtra("username");
         dbUtil = new DBUtil(num6Activity.this,"express.db");
+        dbUtil.updateStete(id,username);
         Order order = dbUtil.queryById(id);
+        Log.e("num6Activity", "onCreate: " + order.toString() );
+        //todo 将order中的内容写到界面
 
     }
 
