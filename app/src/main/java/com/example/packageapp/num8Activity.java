@@ -89,9 +89,10 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
                  *  BACKGROUND_STYLE_RIPPLE: 波纹样式 点击有波纹效果
                  */
 
-                .setActiveColor("#973c3f") //选中颜色
-                .setInActiveColor("#7d5886") //未选中颜色
-                .setBarBackgroundColor("#494e8f");//导航栏背景色
+                .setActiveColor(R.color.check) //选中颜色
+                .setInActiveColor(R.color.colorgrey) //未选中颜色
+                .setBarBackgroundColor(R.color.back);//导航栏背景色
+        initMyOrder();
 
         /** 添加导航按钮 */
         bottomNavigationBar
@@ -169,21 +170,7 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
     public void onTabChanged(String s) {
         if (s.equals(tab1)) {
 //            startActivity(intent1);
-            initData1();
-            MyOrderAdapter adapter = new MyOrderAdapter(this,arrayList);
-            listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Log.e("onItemClick", "onItemClick: "+position );
-                    Order order = arrayList.get(position);
-                    Log.e("onItemClick", "onItemClick: "+ order.toString() );
-                    Intent intent = new Intent(num8Activity.this,num9Activity.class);
-                    Log.e("intent", "onItemClick: _id:"+order.get_id() );
-                    intent.putExtra("id",order.get_id());
-                    startActivity(intent);
-                }
-            });
+            initMyOrder();
         } else {
 //            startActivity(intent2);
             initData();
@@ -206,6 +193,25 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
             });
         }
     }
+
+    private void initMyOrder() {
+        initData1();
+        MyOrderAdapter adapter = new MyOrderAdapter(this,arrayList);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("onItemClick", "onItemClick: "+position );
+                Order order = arrayList.get(position);
+                Log.e("onItemClick", "onItemClick: "+ order.toString() );
+                Intent intent = new Intent(num8Activity.this,num9Activity.class);
+                Log.e("intent", "onItemClick: _id:"+order.get_id() );
+                intent.putExtra("id",order.get_id());
+                startActivity(intent);
+            }
+        });
+    }
+
     private void initData1() {
         DBUtil dbUtil = new DBUtil(num8Activity.this,"express1.db");
         arrayList = dbUtil.selectMyOrder(Integer.valueOf(username));

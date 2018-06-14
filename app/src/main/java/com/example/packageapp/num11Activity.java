@@ -56,7 +56,7 @@ public class num11Activity extends AppCompatActivity {
 
 
 
-        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -70,7 +70,7 @@ public class num11Activity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });*/
+        });
 
 
         /*此段为起点下拉框*/
@@ -78,7 +78,7 @@ public class num11Activity extends AppCompatActivity {
         final String[] arr2=new String[]{
                 "D1","D2","D3","D5","D6","D7","D8","D9","D10","D11","C1","C2","C7","A1","A2","A3","A4","A5","A6","A7","A8"
         };
-        ArrayAdapter<String> arrayAdapter2=new ArrayAdapter<String>(num11Activity.this,android.R.layout.simple_list_item_multiple_choice,arr2);
+        ArrayAdapter<String> arrayAdapter2=new ArrayAdapter<String>(num11Activity.this,android.R.layout.simple_spinner_item,arr2);
         startPlace.setAdapter(arrayAdapter2);
 
         /*startPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -157,6 +157,7 @@ public class num11Activity extends AppCompatActivity {
                 Log.e("insert","onClick: insert success" );
                 Intent intent1 = new Intent(num11Activity.this,num3Activity.class);
                 startActivity(intent1);
+                finish();
             }
         });
     }

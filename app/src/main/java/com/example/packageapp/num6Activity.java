@@ -30,33 +30,38 @@ public class num6Activity extends AppCompatActivity {
         //订单id
         int id = intent.getIntExtra("id",-1);
         String username  = intent.getStringExtra("username");
+        String name = intent.getStringExtra("receive_name");
+        String phone = intent.getStringExtra("receive_phone");
         dbUtil = new DBUtil(num6Activity.this,"express1.db");
         //查看订单是否完成 如果完成就直接跳到 num7Activity
         Order order1 = dbUtil.queryById(id);
+        if(order1.getFinish().equals("已完成")){
+            Intent intent1 = new Intent(num6Activity.this,num7Activity.class);
+            startActivity(intent1);
+        }else {
+            dbUtil.updateStete(id, username, name, phone);
+            Order order = dbUtil.queryById(id);
+            Log.e("num6Activity", "onCreate: " + order.toString());
+            start_place.setText(order.getStartPlace());
+            end_place.setText(order.getEndPlace());
+            payment.setText(String.valueOf(order.getPayment()));
+            String type1 = "";
+            switch (order.getType()) {
+                case 1:
+                    type1 = "小";
+                    break;
+                case 2:
+                    type1 = "中";
+                    break;
+                case 3:
+                    type1 = "大";
+            }
+            type.setText(type1);
+            order_name.setText(order.getOrderName());
+            order_phone.setText(order.getOrderPhone());
+            info.setText(order.getInfo());
 
-        dbUtil.updateStete(id,username);
-        Order order = dbUtil.queryById(id);
-        Log.e("num6Activity", "onCreate: " + order.toString() );
-        start_place.setText(order.getStartPlace());
-        end_place.setText(order.getEndPlace());
-        payment.setText(String.valueOf(order.getPayment()));
-        String type1 = "";
-        switch (order.getType()){
-            case 1:
-                type1 = "小";
-                break;
-            case 2:
-                type1 = "中";
-                break;
-            case 3:
-                type1 = "大";
         }
-        type.setText(type1);
-        order_name.setText(order.getOrderName());
-        order_phone.setText(order.getOrderPhone());
-        info.setText(order.getInfo());
-
-
     }
 
     @Override
