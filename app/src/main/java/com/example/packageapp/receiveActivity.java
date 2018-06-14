@@ -1,7 +1,11 @@
 package com.example.packageapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -29,6 +33,21 @@ public class receiveActivity extends AppCompatActivity {
         initData();
         MyOrderAdapter adapter = new MyOrderAdapter(this,arrayList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Order order = arrayList.get(position);
+                if(order.getFinish() .equals("已完成") ){
+                    Intent intent = new Intent(receiveActivity.this,num7Activity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(receiveActivity.this,num6Activity.class);
+                    intent.putExtra("id",order.get_id());
+                    intent.putExtra("username",order.getOrderId());
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void initData() {

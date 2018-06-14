@@ -27,10 +27,13 @@ public class num6Activity extends AppCompatActivity {
         info = findViewById(R.id.textViewInfo);
 
         Intent intent = getIntent();
-        //点单id
+        //订单id
         int id = intent.getIntExtra("id",-1);
         String username  = intent.getStringExtra("username");
         dbUtil = new DBUtil(num6Activity.this,"express1.db");
+        //查看订单是否完成 如果完成就直接跳到 num7Activity
+        Order order1 = dbUtil.queryById(id);
+
         dbUtil.updateStete(id,username);
         Order order = dbUtil.queryById(id);
         Log.e("num6Activity", "onCreate: " + order.toString() );
