@@ -57,14 +57,6 @@ public class num1Activity extends AppCompatActivity {
         //记住密码
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isRemember = pref.getBoolean("remember_password", false);
-        if (isRemember) {
-            //将账号密码设置到文本框中
-            String name = pref.getString("name", "");
-            String psdstr = pref.getString("psd", "");
-            userName.setText(name);
-            psd.setText(psdstr);
-            rmpsd.setChecked(true);
-        }
 
         btnRegist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +65,15 @@ public class num1Activity extends AppCompatActivity {
                 startActivityForResult(intent, RequestCode);
             }
         });
+
+            //将账号密码设置到文本框中
+            String name = pref.getString("name", "");
+            String psdstr = pref.getString("psd", "");
+        if (isRemember) {
+            userName.setText(name);
+            psd.setText(psdstr);
+            rmpsd.setChecked(true);
+        }
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,13 +120,9 @@ public class num1Activity extends AppCompatActivity {
                     } else {
                         //检查复选框是否选中
                         editor = pref.edit();
-                        if (rmpsd.isChecked()) {
-                            editor.putBoolean("remember_password", true);
-                            editor.putString("name", name_input);
-                            editor.putString("password", pass_input);
-                        } else {
-                            editor.clear();
-                        }
+                        editor.putBoolean("remember_password", true);
+                        editor.putString("name", name_input);
+                        editor.putString("password", pass_input);
                         editor.apply();
 
                         //如果密码正确，跳转到num3Activity

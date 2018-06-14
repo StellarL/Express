@@ -6,11 +6,13 @@ import android.app.FragmentTransaction;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
@@ -38,6 +40,7 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
     private Intent intent2;
     private String username;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +48,9 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
 
         listView = findViewById(R.id.orderListview);
 
-        username = getIntent().getStringExtra("username");
+//        username = getIntent().getStringExtra("username");
+
+        username = PreferenceManager.getDefaultSharedPreferences(this).getString("name","");
 
         intent1=new Intent(this,orderActivity.class);
         intent2=new Intent(this,receiveActivity.class);
@@ -136,7 +141,7 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
             case 2:
                 if (mMyFragment == null) {
 //                    mMyFragment = MyFragment.newInstance("我的");
-                    Intent intent = new Intent(num8Activity.this,mineActivity.class);
+                    Intent intent = new Intent(num8Activity.this,mineActivity.class).putExtra("username",username);
                     startActivity(intent);
                     finish();
                 }
@@ -167,11 +172,38 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
             initData1();
             MyOrderAdapter adapter = new MyOrderAdapter(this,arrayList);
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Log.e("onItemClick", "onItemClick: "+position );
+                    Order order = arrayList.get(position);
+                    Log.e("onItemClick", "onItemClick: "+ order.toString() );
+                    Intent intent = new Intent(num8Activity.this,num9Activity.class);
+                    Log.e("intent", "onItemClick: _id:"+order.get_id() );
+                    intent.putExtra("id",order.get_id());
+                    startActivity(intent);
+                }
+            });
         } else {
 //            startActivity(intent2);
             initData();
             MyOrderAdapter adapter = new MyOrderAdapter(this,arrayList);
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Order order = arrayList.get(position);
+                    if(order.getFinish() .equals("已完成") ){
+                        Intent intent = new Intent(num8Activity.this,num7Activity.class);
+                        startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(num8Activity.this,num6Activity.class);
+                        intent.putExtra("id",order.get_id());
+                        intent.putExtra("username",order.getOrderId());
+                        startActivity(intent);
+                    }
+                }
+            });
         }
     }
     private void initData1() {

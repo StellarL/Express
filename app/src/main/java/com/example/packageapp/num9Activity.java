@@ -29,6 +29,7 @@ public class num9Activity extends AppCompatActivity {
         Log.e("num9", "onCreate: id : "+ id);
         final DBUtil dbUtil = new DBUtil(num9Activity.this,"express1.db");
         Order order = dbUtil.queryById(Integer.valueOf(id));
+        Log.e("order", "onCreate: " +order.toString() );
         receive_name.setText(order.getReceiveName());
         receive_phone.setText(order.getReceivePhone());
         info.setText(order.getInfo());

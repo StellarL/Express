@@ -3,6 +3,7 @@ package com.example.packageapp;
 import android.app.FragmentManager;
 
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,8 +36,8 @@ public class num3Activity extends AppCompatActivity implements BottomNavigationB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_num3);
         Intent intent = getIntent();
-        username = intent.getStringExtra("username");
-
+//        username = intent.getStringExtra("username");
+        username = PreferenceManager.getDefaultSharedPreferences(this).getString("name","");
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
 
         receiveBtn = findViewById(R.id.receiveButton);

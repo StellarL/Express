@@ -3,6 +3,8 @@ package com.example.packageapp;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -26,20 +28,23 @@ public class mineActivity extends AppCompatActivity implements BottomNavigationB
     private ScanFragment mScanFragment;
     private HomeFragment mHomeFragment;
     private BottomNavigationBar bottomNavigationBar;
+    private String username1;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine);
 
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        username1 = sharedPreferences.getString("name","");
         username = findViewById(R.id.username);
         relname = findViewById(R.id.relname);
         idcard = findViewById(R.id.idcard);
         idimg = findViewById(R.id.idimg);
 
         //todo  这里username为上一个传过来 假设为123
-        String username1 = "123";
+//        username1 = getIntent().getStringExtra("username");
 
         //根据id 即 用户名 username 获取真实信息
         DBUtil dbUtil = new DBUtil(mineActivity.this,"expressUserUp.db");
@@ -145,7 +150,6 @@ public class mineActivity extends AppCompatActivity implements BottomNavigationB
 
     @Override
     public void onTabReselected(int position) {
-
 
     }
 }
