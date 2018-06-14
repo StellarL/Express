@@ -187,7 +187,26 @@ public class DBUtil {
     //更新订单已完成
     public void updateFinish(int id){
         String sql = "update order2 set finish =? where _id =?";
-        sqLiteDatabase.execSQL(sql,new String[]{"已完成",id+""});
+
+    }
+
+
+    //根据username获取真实信息
+    public User queryRelInfo(String username1){
+        String sql = "select * from user where username =?";
+        Cursor c = sqLiteDatabase.rawQuery(sql, new String[]{String.valueOf(username1)});
+        User user = new User();
+
+        while (c.moveToNext()) {
+            int _id = c.getInt(c.getColumnIndex("_id"));
+            String username = c.getString(c.getColumnIndex("username"));
+            String password = c.getString(c.getColumnIndex("password"));
+            String relName = c.getString(c.getColumnIndex("relname"));
+            String idCard = c.getString(c.getColumnIndex("id_card"));
+            String idImg = c.getString(c.getColumnIndex("id_img"));
+            user = new User(_id,username,password,relName,idCard,idImg);
+        }
+        return user;
     }
 
 

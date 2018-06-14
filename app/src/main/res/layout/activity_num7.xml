@@ -8,15 +8,15 @@
 
     <TextView
         android:id="@+id/textView24"
-        android:layout_width="96dp"
-        android:layout_height="66dp"
-        android:layout_marginLeft="152dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="148dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="76dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="货已收到\n非常感谢"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="货已收到\n非常感谢" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton"
