@@ -24,6 +24,7 @@ public class num1Activity extends AppCompatActivity {
     private CheckBox rmpsd,autolgn;
     private SQLiteDatabase sqLiteDatabase;
     private int RequestCode=1;
+
     //存储密码
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;

@@ -14,14 +14,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class num11Activity extends AppCompatActivity {
 
     private Spinner spinner,startPlace,endPlace;
     private EditText name,payment,phoneNum,info;
     private Button btnCancel,btnSubmit;
-//    private OrderDBHelper orderDBHelper;
-//    private SQLiteDatabase sqLiteDatabase;
+    private OrderDBHelper orderDBHelper;
+    private SQLiteDatabase sqLiteDatabase;
     //用户名
     private String username;
     private DBUtil dbUtil;
@@ -42,6 +43,8 @@ public class num11Activity extends AppCompatActivity {
         btnSubmit=findViewById(R.id.button2);
         info = findViewById(R.id.textPs);
 
+        orderDBHelper = new OrderDBHelper(num11Activity.this,"express1.db",null,1);
+        sqLiteDatabase = orderDBHelper.getReadableDatabase();
 
         /*此段为类型下拉框*/
         spinner=findViewById(R.id.spinner);
@@ -53,11 +56,12 @@ public class num11Activity extends AppCompatActivity {
 
 
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String num=arr[i];
+                ((TextView)view).setText(num);
                 adapterView.setVisibility(View.VISIBLE);
             }
 
@@ -66,22 +70,23 @@ public class num11Activity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
 
 
         /*此段为起点下拉框*/
         startPlace=findViewById(R.id.startPlace);
-        String[] arr2=new String[]{
+        final String[] arr2=new String[]{
                 "D1","D2","D3","D5","D6","D7","D8","D9","D10","D11","C1","C2","C7","A1","A2","A3","A4","A5","A6","A7","A8"
         };
         ArrayAdapter<String> arrayAdapter2=new ArrayAdapter<String>(num11Activity.this,android.R.layout.simple_list_item_multiple_choice,arr2);
         startPlace.setAdapter(arrayAdapter2);
 
-        startPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*startPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String num=arr[i];
+                String num=arr2[i];
+                ((TextView)view).setText(num);
                 adapterView.setVisibility(View.VISIBLE);
             }
 
@@ -90,16 +95,17 @@ public class num11Activity extends AppCompatActivity {
 
             }
         });
-
+*/
 
         /*此段为终点下拉框*/
         endPlace=findViewById(R.id.endPlace);
         endPlace.setAdapter(arrayAdapter2);
-        endPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*endPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String num=arr[i];
+                String num=arr2[i];
+                ((TextView)view).setText(num);
                 adapterView.setVisibility(View.VISIBLE);
             }
 
@@ -107,7 +113,7 @@ public class num11Activity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
 
 
 
