@@ -51,7 +51,7 @@ public class num11Activity extends AppCompatActivity {
         final String[] arr=new String[]{
                 "大","中","小"
         };
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(num11Activity.this,android.R.layout.simple_list_item_multiple_choice,arr);
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(num11Activity.this,android.R.layout.simple_spinner_item,arr);
         spinner.setAdapter(arrayAdapter);
 
 
