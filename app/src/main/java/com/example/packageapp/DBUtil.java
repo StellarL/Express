@@ -93,9 +93,9 @@ public class DBUtil {
     /**
      * 用户点击接单 更新数据库 state = 1 receiveID receiveName receivePhone
      */
-    public void updateStete(int id,String username) {
-        String sql = "update order2 set receive_id=?,state=1 where _id=?";
-        sqLiteDatabase.execSQL(sql,new String[]{username,String.valueOf(id)});
+    public void updateStete(int id,String username,String name,String phone) {
+        String sql = "update order2 set receive_id=?,receive_name=?,receive_phone=?,state=1 where _id=?";
+        sqLiteDatabase.execSQL(sql,new String[]{username,name,phone,String.valueOf(id)});
         Log.e("updateStete", "updateStete: success" );
     }
 
@@ -187,7 +187,8 @@ public class DBUtil {
     //更新订单已完成
     public void updateFinish(int id){
         String sql = "update order2 set finish =? where _id =?";
-
+        sqLiteDatabase.execSQL(sql,new String[]{"已完成",String.valueOf(id)});
+        Log.e("updateFinish", "updateFinish: success" );
     }
 
 

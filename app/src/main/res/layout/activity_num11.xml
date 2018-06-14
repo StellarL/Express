@@ -9,8 +9,8 @@
     <EditText
         android:id="@+id/textPs"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="252dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="228dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:textSize="18dp"
@@ -178,36 +178,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textType"
-        android:layout_width="38dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginTop="16dp"
-        android:text="小"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
-        app:layout_constraintTop_toTopOf="@+id/spinner" />
-
-    <TextView
-        android:id="@+id/textStart"
-        android:layout_width="32dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="D5"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/startPlace"
-        app:layout_constraintTop_toTopOf="@+id/startPlace" />
-
-    <TextView
-        android:id="@+id/textEnd"
-        android:layout_width="32dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:text="D5"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/endPlace"
-        app:layout_constraintTop_toTopOf="@+id/endPlace" />
 </android.support.constraint.ConstraintLayout>

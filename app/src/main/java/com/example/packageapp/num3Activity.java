@@ -50,6 +50,7 @@ public class num3Activity extends AppCompatActivity implements BottomNavigationB
                 Intent intent = new Intent(num3Activity.this,num11Activity.class);
                 intent.putExtra("username",username);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -60,6 +61,7 @@ public class num3Activity extends AppCompatActivity implements BottomNavigationB
                 Intent intent = new Intent(num3Activity.this,num4Activity.class);
                 intent.putExtra("username",username);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -84,9 +86,9 @@ public class num3Activity extends AppCompatActivity implements BottomNavigationB
                  *  BACKGROUND_STYLE_RIPPLE: 波纹样式 点击有波纹效果
                  */
 
-                .setActiveColor("#FF107FFD") //选中颜色
-                .setInActiveColor("#e9e6e6") //未选中颜色
-                .setBarBackgroundColor("#1ccbae");//导航栏背景色
+                .setActiveColor(R.color.check) //选中颜色
+                .setInActiveColor(R.color.colorgrey) //未选中颜色
+                .setBarBackgroundColor(R.color.back);//导航栏背景色
 
         /** 添加导航按钮 */
         bottomNavigationBar

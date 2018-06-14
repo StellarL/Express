@@ -39,7 +39,7 @@ public class num9Activity extends AppCompatActivity {
                 //更新订单已完成
                 DBUtil dbUtil1 = new DBUtil(num9Activity.this,"express1.db");
                 dbUtil.updateFinish(Integer.valueOf(id));
-                Intent intent1 = new Intent(num9Activity.this,orderActivity.class);
+                Intent intent1 = new Intent(num9Activity.this,num8Activity.class);
                 startActivity(intent1);
             }
         });
