@@ -89,9 +89,9 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
                  *  BACKGROUND_STYLE_RIPPLE: 波纹样式 点击有波纹效果
                  */
 
-                .setActiveColor("#FF107FFD") //选中颜色
-                .setInActiveColor("#e9e6e6") //未选中颜色
-                .setBarBackgroundColor("#1ccbae");//导航栏背景色
+                .setActiveColor("#973c3f") //选中颜色
+                .setInActiveColor("#7d5886") //未选中颜色
+                .setBarBackgroundColor("#494e8f");//导航栏背景色
 
         /** 添加导航按钮 */
         bottomNavigationBar

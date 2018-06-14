@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.packageapp.num3Activity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/timg"
+        />
 
     <Button
         android:id="@+id/receiveButton"
@@ -15,6 +20,7 @@
         android:layout_marginStart="92dp"
         android:layout_marginTop="76dp"
         android:text="我要接单"
+        android:background="@color/colorblue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +31,7 @@
         android:layout_marginBottom="232dp"
         android:layout_marginStart="92dp"
         android:text="我要下单"
+        android:background="@color/colorblue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
