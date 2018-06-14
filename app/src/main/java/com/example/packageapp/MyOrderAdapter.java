@@ -51,7 +51,7 @@ public class MyOrderAdapter  extends BaseAdapter{
             myHolder.endPlace = view.findViewById(R.id.textView28);
             myHolder.type = view.findViewById(R.id.type);
             myHolder.payment = view.findViewById(R.id.payment);
-            myHolder.state = view.findViewById(R.id.status);
+            myHolder.finish = view.findViewById(R.id.status);
             view.setTag(myHolder);
         }else{
             view = convertView;
@@ -74,11 +74,17 @@ public class MyOrderAdapter  extends BaseAdapter{
                 break;
         }
         String paymentText = order.getPayment()+"";
-//        String statusText = order.getState();
-        return null;
+        String finishText = order.getFinish();
+        myHolder.startPlace.setText(startPlaceText);
+        myHolder.endPlace.setText(endplaceText);
+        myHolder.type.setText(typeText);
+        myHolder.payment.setText(paymentText);
+        myHolder.finish.setText(finishText);
+
+        return view;
     }
 
     class MyHolder{
-        TextView startPlace,endPlace,type,payment,state;
+        TextView startPlace,endPlace,type,payment,finish;
     }
 }

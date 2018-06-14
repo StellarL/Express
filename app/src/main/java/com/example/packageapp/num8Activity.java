@@ -20,7 +20,7 @@ public class num8Activity extends AppCompatActivity {
         setContentView(R.layout.activity_num8);
 
         //接单下单选项卡
-        tabHost=findViewById(R.id.tabhost);
+       /* tabHost=findViewById(R.id.tabhost);
         tabHost.setup();
         tabWidget=findViewById(android.R.id.tabs);
         tabWidget.setDividerDrawable(null);//设置无竖线
@@ -39,6 +39,6 @@ public class num8Activity extends AppCompatActivity {
             spec.setContent(intents[i]);
             //将选项卡添加至tabHost上
             tabHost.addTab(spec);
-        }
+        }*/
     }
 }
