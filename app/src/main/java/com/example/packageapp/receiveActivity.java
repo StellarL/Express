@@ -3,10 +3,8 @@ package com.example.packageapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import java.util.ArrayList;
  */
 public class receiveActivity extends AppCompatActivity {
 
-    private ListView listView;
+    private ListView listView1;
     private ArrayList<Order> arrayList;
     private String username;
 
@@ -25,15 +23,15 @@ public class receiveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive);
 
-        listView=findViewById(R.id.listviewriv);
+        listView1 =findViewById(R.id.listviewriv);
 
         //todo 这里的username从前面传过来 这里假设 "1234"
         username = "1234";
 
         initData();
         MyOrderAdapter adapter = new MyOrderAdapter(this,arrayList);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView1.setAdapter(adapter);
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Order order = arrayList.get(position);

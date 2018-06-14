@@ -11,12 +11,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+
+import java.util.ArrayList;
 
 public class num8Activity extends Activity implements BottomNavigationBar.OnTabSelectedListener ,TabHost.OnTabChangeListener{
 
@@ -26,16 +29,23 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
     private ScanFragment mScanFragment;
     private HomeFragment mHomeFragment;
     private BottomNavigationBar bottomNavigationBar;
+    private ListView listView;
+    private ArrayList<Order> arrayList;
 
     private TabHost tabHost;
     private String tab1="我的下单",tab_2="我的接单";
     private Intent intent1;
     private Intent intent2;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_num8);
+
+        listView = findViewById(R.id.orderListview);
+
+        username = getIntent().getStringExtra("username");
 
         intent1=new Intent(this,orderActivity.class);
         intent2=new Intent(this,receiveActivity.class);
@@ -153,9 +163,24 @@ public class num8Activity extends Activity implements BottomNavigationBar.OnTabS
     @Override
     public void onTabChanged(String s) {
         if (s.equals(tab1)) {
-            startActivity(intent1);
+//            startActivity(intent1);
+            initData1();
+            MyOrderAdapter adapter = new MyOrderAdapter(this,arrayList);
+            listView.setAdapter(adapter);
         } else {
-            startActivity(intent2);
+//            startActivity(intent2);
+            initData();
+            MyOrderAdapter adapter = new MyOrderAdapter(this,arrayList);
+            listView.setAdapter(adapter);
         }
+    }
+    private void initData1() {
+        DBUtil dbUtil = new DBUtil(num8Activity.this,"express1.db");
+        arrayList = dbUtil.selectMyOrder(Integer.valueOf(username));
+    }
+
+    private void initData() {
+        DBUtil dbUtil = new DBUtil(this,"express1.db");
+        arrayList = dbUtil.selectMyReceive(Integer.valueOf(username));
     }
 }

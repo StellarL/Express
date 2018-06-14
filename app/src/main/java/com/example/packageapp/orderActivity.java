@@ -30,7 +30,7 @@ public class orderActivity extends AppCompatActivity {
         //todo username从之前传过来的 这里假设为123
         username = "123";
 
-        initData();
+        initData1();
         MyOrderAdapter adapter = new MyOrderAdapter(this,arrayList);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,7 +47,7 @@ public class orderActivity extends AppCompatActivity {
         });
     }
 
-    private void initData() {
+    private void initData1() {
         DBUtil dbUtil = new DBUtil(orderActivity.this,"express1.db");
         arrayList = dbUtil.selectMyOrder(Integer.valueOf(username));
     }

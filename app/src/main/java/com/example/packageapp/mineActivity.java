@@ -16,11 +16,11 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
 
-    private TextView username,relname,idcard,idimg;
 
 
 public class mineActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
     int lastSelectedPosition = 2;
+    private TextView username,relname,idcard,idimg;
     private String TAG = num3Activity.class.getSimpleName();
     private MyFragment mMyFragment;
     private ScanFragment mScanFragment;

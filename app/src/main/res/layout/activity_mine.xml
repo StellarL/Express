@@ -44,7 +44,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="164dp"
         android:text="我的认证信息："
-        android:textSize="32px"
+        android:textSize="64px"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
