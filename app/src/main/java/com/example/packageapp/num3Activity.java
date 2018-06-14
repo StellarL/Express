@@ -125,7 +125,7 @@ public class num3Activity extends AppCompatActivity implements BottomNavigationB
 //                    mScanFragment = ScanFragment.newInstance("订单");
                     Intent intent = new Intent(num3Activity.this,num8Activity.class);
                     startActivity(intent);
-//                    finish();
+                    finish();
                 }
 //                transaction.replace(R.id.tb, mScanFragment);
                 break;
@@ -134,7 +134,7 @@ public class num3Activity extends AppCompatActivity implements BottomNavigationB
 //                    mMyFragment = MyFragment.newInstance("我的");
                     Intent intent = new Intent(num3Activity.this,mineActivity.class);
                     startActivity(intent);
-//                    finish();
+                    finish();
                 }
 //                transaction.replace(R.id.tb, mMyFragment);
                 break;

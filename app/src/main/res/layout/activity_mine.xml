@@ -10,6 +10,7 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_marginStart="20dp"
         android:layout_marginTop="68dp"
         android:text="username"
@@ -106,4 +107,31 @@
         android:text="idimg"
         app:layout_constraintStart_toEndOf="@+id/textView42"
         app:layout_constraintTop_toBottomOf="@+id/idcard" />
+
+        android:text="TextView"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="167dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="508dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <com.ashokvarma.bottomnavigation.BottomNavigationBar
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

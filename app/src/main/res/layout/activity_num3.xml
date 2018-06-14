@@ -32,7 +32,13 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
 
+
         tools:layout_editor_absoluteY="455dp">
+
+        android:layout_marginTop="508dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
 
         <LinearLayout
             android:id="@+id/tb"
